@@ -384,6 +384,43 @@ bob@dylan:~$
 File: [api/v1/auth/auth.py]()
 </summary>
 
+<p>Update the method <code>def require_auth(self, path: str, excluded_paths: List[str]) -&gt; bool:</code> in <code>Auth</code> that returns <code>True</code> if the <code>path</code> is not in the list of strings <code>excluded_paths</code>:</p>
+
+<ul>
+<li>Returns <code>True</code> if <code>path</code> is <code>None</code></li>
+<li>Returns <code>True</code> if <code>excluded_paths</code> is <code>None</code> or empty</li>
+<li>Returns <code>False</code> if <code>path</code> is in <code>excluded_paths</code></li>
+<li>You can assume <code>excluded_paths</code> contains string path always ending by a <code>/</code></li>
+<li>This method must be slash tolerant: <code>path=/api/v1/status</code> and <code>path=/api/v1/status/</code> must be returned <code>False</code> if <code>excluded_paths</code> contains <code>/api/v1/status/</code></li>
+</ul>
+
+<pre><code>bob@dylan:~$ cat main_1.py
+#!/usr/bin/env python3
+""" Main 1
+"""
+from api.v1.auth.auth import Auth
+
+a = Auth()
+
+print(a.require_auth(None, None))
+print(a.require_auth(None, []))
+print(a.require_auth("/api/v1/status/", []))
+print(a.require_auth("/api/v1/status/", ["/api/v1/status/"]))
+print(a.require_auth("/api/v1/status", ["/api/v1/status/"]))
+print(a.require_auth("/api/v1/users", ["/api/v1/status/"]))
+print(a.require_auth("/api/v1/users", ["/api/v1/status/", "/api/v1/stats"]))
+
+bob@dylan:~$
+bob@dylan:~$ API_HOST=0.0.0.0 API_PORT=5000 ./main_1.py
+True
+True
+True
+False
+False
+True
+True
+bob@dylan:~$
+</code></pre>
 
 </details>
 
