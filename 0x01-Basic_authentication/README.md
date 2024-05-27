@@ -433,6 +433,75 @@ bob@dylan:~$
 File: [api/v1/app.py](), [api/v1/auth/auth.py]()
 </summary>
 
+<p>Now you will validate all requests to secure the API:</p>
+
+<p>Update the method <code>def authorization_header(self, request=None) -&gt; str:</code> in <code>api/v1/auth/auth.py</code>:</p>
+
+<ul>
+<li>If <code>request</code> is <code>None</code>, returns <code>None</code> </li>
+<li>If <code>request</code> doesn’t contain the header key <code>Authorization</code>, returns <code>None</code></li>
+<li>Otherwise, return the value of the header request <code>Authorization</code></li>
+</ul>
+
+<p>Update the file <code>api/v1/app.py</code>:</p>
+
+<ul>
+<li>Create a variable <code>auth</code> initialized to <code>None</code> after the <code>CORS</code> definition</li>
+<li>Based on the environment variable <code>AUTH_TYPE</code>, load and assign the right instance of authentication to <code>auth</code>
+
+<ul>
+<li>if <code>auth</code>:
+
+<ul>
+<li>import <code>Auth</code> from <code>api.v1.auth.auth</code></li>
+<li>create an instance of <code>Auth</code> and assign it to the variable <code>auth</code></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>Now the biggest piece is the filtering of each request. For that you will use the Flask method <a href="https://intranet.alxswe.com/rltoken/kzBrJT9aaokbD6aWYyQzXg" title="before_request" target="_blank">before_request</a></p>
+
+<ul>
+<li>Add a method in <code>api/v1/app.py</code> to handler <code>before_request</code>
+
+<ul>
+<li>if <code>auth</code> is <code>None</code>, do nothing</li>
+<li>if <code>request.path</code> is not part of this list <code>['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']</code>, do nothing - you must use the method <code>require_auth</code> from the <code>auth</code> instance</li>
+<li>if <code>auth.authorization_header(request)</code> returns <code>None</code>, raise the error <code>401</code> - you must use <code>abort</code></li>
+<li>if <code>auth.current_user(request)</code> returns <code>None</code>, raise the error <code>403</code> - you must use <code>abort</code></li>
+</ul></li>
+</ul>
+
+<p>In the first terminal:</p>
+
+<pre><code>bob@dylan:~$ API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=auth python3 -m api.v1.app
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+</code></pre>
+
+<p>In a second terminal:</p>
+
+<pre><code>bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/status"
+{
+  "status": "OK"
+}
+bob@dylan:~$ 
+bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/status/"
+{
+  "status": "OK"
+}
+bob@dylan:~$ 
+bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/users"
+{
+  "error": "Unauthorized"
+}
+bob@dylan:~$
+bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/users" -H "Authorization: Test"
+{
+  "error": "Forbidden"
+}
+bob@dylan:~$
+</code></pre>
 
 </details>
 
