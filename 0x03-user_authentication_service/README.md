@@ -18,7 +18,7 @@
 
 ## Resources
 <details>
-<summary><b><a href="https://intranet.alxswe.com/rltoken/lKExyvivrrW4eh0eI8UV6A">Flask documentation</a></b></summary><br>
+<summary><b><a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/">Flask documentation</a></b></summary><br>
 
 
 <br><p align="center">※※※※※※※※※※※※</p><br>
