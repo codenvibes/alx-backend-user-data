@@ -235,7 +235,7 @@ Use it to parameterize the formatter.</p>
 <p><strong>Tips:</strong></p>
 
 <ul>
-<li><a href="https://intranet.alxswe.com/rltoken/jf71oYqiETchcVhPzQVnyg" target="_blank" title="What Is PII, non-PII, and personal data?">What Is PII, non-PII, and personal data?</a></li>
+<li><a href="https://piwik.pro/blog/what-is-pii-personal-data/" target="_blank" title="What Is PII, non-PII, and personal data?">What Is PII, non-PII, and personal data?</a></li>
 <li><a href="https://intranet.alxswe.com/rltoken/HznI8kpvBxdnRM92BRoUmQ" target="_blank" title="Uncovering Password Habits">Uncovering Password Habits</a></li>
 </ul>
 
