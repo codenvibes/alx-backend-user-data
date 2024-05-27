@@ -514,6 +514,47 @@ bob@dylan:~$
 File: [api/v1/app.py](), [api/v1/auth/basic_auth.py]()
 </summary>
 
+<p>Create a class <code>BasicAuth</code> that inherits from <code>Auth</code>. For the moment this class will be empty.</p>
+
+<p>Update <code>api/v1/app.py</code> for using <code>BasicAuth</code> class instead of <code>Auth</code> depending of the value of the environment variable <code>AUTH_TYPE</code>, If <code>AUTH_TYPE</code> is equal to <code>basic_auth</code>:</p>
+
+<ul>
+<li>import <code>BasicAuth</code> from <code>api.v1.auth.basic_auth</code></li>
+<li>create an instance of <code>BasicAuth</code> and assign it to the variable <code>auth</code></li>
+</ul>
+
+<p>Otherwise, keep the previous mechanism with <code>auth</code> an instance of <code>Auth</code>.</p>
+
+<p>In the first terminal:</p>
+
+<pre><code>bob@dylan:~$ API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=basic_auth python3 -m api.v1.app
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+</code></pre>
+
+<p>In a second terminal:</p>
+
+<pre><code>bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/status"
+{
+  "status": "OK"
+}
+bob@dylan:~$
+bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/status/"
+{
+  "status": "OK"
+}
+bob@dylan:~$
+bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/users"
+{
+  "error": "Unauthorized"
+}
+bob@dylan:~$
+bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/users" -H "Authorization: Test"
+{
+  "error": "Forbidden"
+}
+bob@dylan:~$
+</code></pre>
 
 </details>
 
