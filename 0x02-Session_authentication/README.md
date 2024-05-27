@@ -898,6 +898,10 @@ bob@dylan:~$
 </details>
 
 
+
+<details>
+<summary>
+
 ### 9. Expiration?
 `#advanced`
 
