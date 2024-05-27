@@ -616,6 +616,40 @@ bob@dylan:~$
 File: [api/v1/auth/basic_auth.py]()
 </summary>
 
+<p>Add the method <code>def decode_base64_authorization_header(self, base64_authorization_header: str) -&gt; str:</code> in the class <code>BasicAuth</code> that returns the decoded value of a Base64 string <code>base64_authorization_header</code>:</p>
+
+<ul>
+<li>Return <code>None</code> if <code>base64_authorization_header</code> is <code>None</code></li>
+<li>Return <code>None</code> if <code>base64_authorization_header</code> is not a string</li>
+<li>Return <code>None</code> if <code>base64_authorization_header</code> is not a valid Base64 - you can use <code>try/except</code></li>
+<li>Otherwise, return the decoded value as UTF8 string - you can use <code>decode('utf-8')</code></li>
+</ul>
+
+<pre><code>bob@dylan:~$ cat main_3.py
+#!/usr/bin/env python3
+""" Main 3
+"""
+from api.v1.auth.basic_auth import BasicAuth
+
+a = BasicAuth()
+
+print(a.decode_base64_authorization_header(None))
+print(a.decode_base64_authorization_header(89))
+print(a.decode_base64_authorization_header("Holberton School"))
+print(a.decode_base64_authorization_header("SG9sYmVydG9u"))
+print(a.decode_base64_authorization_header("SG9sYmVydG9uIFNjaG9vbA=="))
+print(a.decode_base64_authorization_header(a.extract_base64_authorization_header("Basic SG9sYmVydG9uIFNjaG9vbA==")))
+
+bob@dylan:~$
+bob@dylan:~$ API_HOST=0.0.0.0 API_PORT=5000 ./main_3.py
+None
+None
+None
+Holberton
+Holberton School
+Holberton School
+bob@dylan:~$
+</code></pre>
 
 </details>
 
