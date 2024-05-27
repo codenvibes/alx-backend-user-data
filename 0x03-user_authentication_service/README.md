@@ -26,7 +26,7 @@
 
 
 <details>
-<summary><b><a href="https://intranet.alxswe.com/rltoken/py7LuuD1u2MUwcaf8wnDzQ">Requests module</a></b></summary><br>
+<summary><b><a href="https://requests.kennethreitz.org/en/latest/user/quickstart/">Requests module</a></b></summary><br>
 
 
 <br><p align="center">※※※※※※※※※※※※</p><br>
