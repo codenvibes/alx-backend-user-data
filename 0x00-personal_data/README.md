@@ -236,7 +236,7 @@ Use it to parameterize the formatter.</p>
 
 <ul>
 <li><a href="https://piwik.pro/blog/what-is-pii-personal-data/" target="_blank" title="What Is PII, non-PII, and personal data?">What Is PII, non-PII, and personal data?</a></li>
-<li><a href="https://intranet.alxswe.com/rltoken/HznI8kpvBxdnRM92BRoUmQ" target="_blank" title="Uncovering Password Habits">Uncovering Password Habits</a></li>
+<li><a href="https://www.digitalguardian.com/blog/uncovering-password-habits-are-users-password-security-habits-improving-infographic" target="_blank" title="Uncovering Password Habits">Uncovering Password Habits</a></li>
 </ul>
 
 <pre><code>bob@dylan:~$ cat main.py
