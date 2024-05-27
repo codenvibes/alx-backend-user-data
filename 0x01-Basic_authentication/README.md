@@ -463,7 +463,7 @@ File: [api/v1/auth/basic_auth.py]()
 <details>
 <summary>
 
-### 8. 
+### 8. Basic - Base64 decode
 `mandatory`
 
 File: []()
