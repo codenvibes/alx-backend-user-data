@@ -186,7 +186,7 @@ bob@dylan:~$
 <details>
 <summary>
 
-### 1. 
+### 1. Error handler: Unauthorized
 `mandatory`
 
 File: []()
