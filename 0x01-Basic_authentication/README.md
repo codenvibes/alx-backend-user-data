@@ -334,6 +334,44 @@ bob@dylan:~$
 File: [api/v1/auth](), [api/v1/auth/__init__.py](), [api/v1/auth/auth.py]()
 </summary>
 
+<p>Now you will create a class to manage the API authentication.</p>
+
+<ul>
+<li>Create a folder <code>api/v1/auth</code></li>
+<li>Create an empty file <code>api/v1/auth/__init__.py</code></li>
+<li>Create the class <code>Auth</code>:
+
+<ul>
+<li>in the file <code>api/v1/auth/auth.py</code></li>
+<li>import <code>request</code> from <code>flask</code></li>
+<li>class name <code>Auth</code></li>
+<li>public method <code>def require_auth(self, path: str, excluded_paths: List[str]) -&gt; bool:</code> that returns <code>False</code> - <code>path</code> and <code>excluded_paths</code> will be used later, now, you don’t need to take care of them</li>
+<li>public method <code>def authorization_header(self, request=None) -&gt; str:</code> that returns <code>None</code> - <code>request</code> will be the Flask request object</li>
+<li>public method <code>def current_user(self, request=None) -&gt; TypeVar('User'):</code> that returns <code>None</code> - <code>request</code> will be the Flask request object</li>
+</ul></li>
+</ul>
+
+<p>This class is the template for all authentication system you will implement.</p>
+
+<pre><code>bob@dylan:~$ cat main_0.py
+#!/usr/bin/env python3
+""" Main 0
+"""
+from api.v1.auth.auth import Auth
+
+a = Auth()
+
+print(a.require_auth("/api/v1/status/", ["/api/v1/status/"]))
+print(a.authorization_header())
+print(a.current_user())
+
+bob@dylan:~$ 
+bob@dylan:~$ API_HOST=0.0.0.0 API_PORT=5000 ./main_0.py
+False
+None
+None
+bob@dylan:~$
+</code></pre>
 
 </details>
 
