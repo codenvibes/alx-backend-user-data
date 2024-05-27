@@ -1,9 +1,9 @@
 <h1 align="center"><b>0x01. BASIC AUTHENTICATION</b></h1>
 <div align="center"><code>Back-end</code> <code>Authentification</code></div>
 
-<!-- <br>
+<br>
 
-## Background Context -->
+## Background Context
 
 
 <!-- <br>
