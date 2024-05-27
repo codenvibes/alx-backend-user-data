@@ -30,7 +30,7 @@
 
 
 <details>
-<summary><b><a href="https://intranet.alxswe.com/rltoken/41oaQXfzwnF1i-wT8W0vHw">bcrypt package</a></b></summary><br>
+<summary><b><a href="https://github.com/pyca/bcrypt/">bcrypt package</a></b></summary><br>
 
 
 <br><p align="center">※※※※※※※※※※※※</p><br>
