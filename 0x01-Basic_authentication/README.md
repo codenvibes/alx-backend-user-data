@@ -511,10 +511,10 @@ File: [api/v1/auth/basic_auth.py]()
 <details>
 <summary>
 
-### 12. 
+### 12. Basic - Allow password with ":"
 `#advanced`
 
-File: []()
+File: [api/v1/auth/basic_auth.py]()
 </summary>
 
 
