@@ -84,7 +84,7 @@
 
 
 <details>
-<summary><b><a href=" "> </a></b></summary><br>
+<summary><b><a href=" "> </a>How to encode a string in Base64</b></summary><br>
 
 
 <br><p align="center">※※※※※※※※※※※※</p><br>
