@@ -34,7 +34,7 @@
 
 
 <details>
-<summary><b><a href="https://intranet.alxswe.com/rltoken/cj-mc5ZHp_KyXn1yikHC0A">HTTP status codes</a></b></summary><br>
+<summary><b><a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">HTTP status codes</a></b></summary><br>
 
 
 <br><p align="center">※※※※※※※※※※※※</p><br>
