@@ -260,7 +260,7 @@ bob@dylan:~$
 ### 2. Error handler: Forbidden
 `mandatory`
 
-File: []()
+File: [api/v1/app.py](), [api/v1/views/index.py]()
 </summary>
 
 <p>What the HTTP status code for a request where the user is authenticate but not allowed to access to a resource? <code>403</code> of course!</p>
