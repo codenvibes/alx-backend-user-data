@@ -331,7 +331,7 @@ bob@dylan:~$
 ### 3. 
 `mandatory`
 
-File: []()
+File: [api/v1/auth](), [api/v1/auth/__init__.py](), [api/v1/auth/auth.py]()
 </summary>
 
 
