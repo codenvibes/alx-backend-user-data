@@ -1,6 +1,12 @@
 <h1 align="center"><b>0X03. USER AUTHENTICATION SERVICE</b></h1>
 <div align="center"><code>Back-end</code> <code>Authentification</code></div>
 
+<!--==================================================-->
+<br><div align="center"><img src=""></div><br>
+
+<p>In the industry, you should <strong>not</strong> implement your own authentication system and use a module or framework that doing it for you (like in Python-Flask: <a href="https://intranet.alxswe.com/rltoken/9nVfotMI_1zpEzihMzBeTA" title="Flask-User" target="_blank">Flask-User</a>). Here, for the learning purpose, we will walk through each step of this mechanism to understand it by doing.</p>
+
+
 <!-- <br>
 <hr>
 <h3><a href=>Notes</a></h3>
