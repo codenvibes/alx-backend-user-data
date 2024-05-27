@@ -490,7 +490,7 @@ File: [api/v1/auth/basic_auth.py]()
 ### 10. Basic - User object
 `mandatory`
 
-File: []()
+File: [api/v1/auth/basic_auth.py]()
 </summary>
 
 
