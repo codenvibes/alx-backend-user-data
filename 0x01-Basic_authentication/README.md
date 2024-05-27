@@ -378,7 +378,7 @@ bob@dylan:~$
 <details>
 <summary>
 
-### 4. 
+### 4. Define which routes don't need authentication
 `mandatory`
 
 File: []()
