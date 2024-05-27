@@ -14,7 +14,7 @@
 
 ## Resources
 <details>
-<summary><b><a href="https://intranet.alxswe.com/rltoken/jf71oYqiETchcVhPzQVnyg">What Is PII, non-PII, and Personal Data?</a></b></summary><br>
+<summary><b><a href="https://piwik.pro/blog/what-is-pii-personal-data/">What Is PII, non-PII, and Personal Data?</a></b></summary><br>
 
 
 <br><p align="center">※※※※※※※※※※※※</p><br>
