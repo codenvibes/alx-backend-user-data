@@ -100,8 +100,6 @@ In the industry, you should <strong>not</strong> implement your own Session auth
 
 
 
-<br>
-
 <!--==================================================-->
 <br>
 
