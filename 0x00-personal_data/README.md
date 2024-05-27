@@ -38,7 +38,7 @@
 
 
 <details>
-<summary><b><a href="https://intranet.alxswe.com/rltoken/XCpI9uvguxlTCsAeRCW6SA">Logging to Files, Setting Levels, and Formatting</a></b></summary><br>
+<summary><b><a href="https://www.youtube.com/watch?v=-ARI4Cz-awo">Logging to Files, Setting Levels, and Formatting</a></b></summary><br>
 
 
 <br><p align="center">※※※※※※※※※※※※</p><br>
