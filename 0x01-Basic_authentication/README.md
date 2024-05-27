@@ -36,7 +36,7 @@
 
 
 <details>
-<summary><b><a href=" "> </a></b></summary><br>
+<summary><b><a href=" ">HTTP header Authorization</a></b></summary><br>
 
 
 <br><p align="center">※※※※※※※※※※※※</p><br>
