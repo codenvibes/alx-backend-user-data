@@ -8,7 +8,7 @@
 
 <p>In the industry, you should <strong>not</strong> implement your own Basic authentication system and use a module or framework that doing it for you (like in Python-Flask: <a href="https://flask-httpauth.readthedocs.io/en/latest/" title="Flask-HTTPAuth" target="_blank">Flask-HTTPAuth</a>). Here, for the learning purpose, we will walk through each step of this mechanism to understand it by doing.</p>
 
-<br><div align="center"><img src=""></div>
+<br><div align="center"><img src="https://github.com/codenvibes/alx-backend-user-data/blob/master/0x01-Basic_authentication/images/6ccb363443a8f301bc2bc38d7a08e9650117de7c.png"></div>
 
 
 <!-- <br>
