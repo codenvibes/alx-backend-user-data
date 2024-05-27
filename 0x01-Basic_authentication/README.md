@@ -381,7 +381,7 @@ bob@dylan:~$
 ### 4. Define which routes don't need authentication
 `mandatory`
 
-File: []()
+File: [api/v1/auth/auth.py]()
 </summary>
 
 
