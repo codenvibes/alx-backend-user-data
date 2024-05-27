@@ -451,7 +451,7 @@ File: [api/v1/app.py](), [api/v1/auth/basic_auth.py]()
 <details>
 <summary>
 
-### 7. 
+### 7. Basic - Base64 part
 `mandatory`
 
 File: []()
