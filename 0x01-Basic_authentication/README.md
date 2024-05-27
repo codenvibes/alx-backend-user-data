@@ -189,7 +189,7 @@ bob@dylan:~$
 ### 1. Error handler: Unauthorized
 `mandatory`
 
-File: []()
+File: [api/v1/app.py](), [api/v1/views/index.py]()
 </summary>
 
 
