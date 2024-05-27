@@ -567,6 +567,43 @@ bob@dylan:~$
 File: [api/v1/auth/basic_auth.py]()
 </summary>
 
+<p>Add the method <code>def extract_base64_authorization_header(self, authorization_header: str) -&gt; str:</code> in the class <code>BasicAuth</code> that returns the Base64 part of the <code>Authorization</code> header for a Basic Authentication:</p>
+
+<ul>
+<li>Return <code>None</code> if <code>authorization_header</code> is <code>None</code></li>
+<li>Return <code>None</code> if <code>authorization_header</code> is not a string</li>
+<li>Return <code>None</code> if <code>authorization_header</code> doesn’t start by <code>Basic</code> (with a space at the end)</li>
+<li>Otherwise, return the value after <code>Basic</code> (after the space)</li>
+<li>You can assume <code>authorization_header</code> contains only one <code>Basic</code></li>
+</ul>
+
+<pre><code>bob@dylan:~$ cat main_2.py
+#!/usr/bin/env python3
+""" Main 2
+"""
+from api.v1.auth.basic_auth import BasicAuth
+
+a = BasicAuth()
+
+print(a.extract_base64_authorization_header(None))
+print(a.extract_base64_authorization_header(89))
+print(a.extract_base64_authorization_header("Holberton School"))
+print(a.extract_base64_authorization_header("Basic Holberton"))
+print(a.extract_base64_authorization_header("Basic SG9sYmVydG9u"))
+print(a.extract_base64_authorization_header("Basic SG9sYmVydG9uIFNjaG9vbA=="))
+print(a.extract_base64_authorization_header("Basic1234"))
+
+bob@dylan:~$
+bob@dylan:~$ API_HOST=0.0.0.0 API_PORT=5000 ./main_2.py
+None
+None
+None
+Holberton
+SG9sYmVydG9u
+SG9sYmVydG9uIFNjaG9vbA==
+None
+bob@dylan:~$
+</code></pre>
 
 </details>
 
