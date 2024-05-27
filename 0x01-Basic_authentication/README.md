@@ -139,9 +139,47 @@
 ### 0. Simple-basic-API
 `mandatory`
 
-File: []()
+Directory: [0x01-Basic_authentication]()
 </summary>
 
+<p>Download and start your project from this <a href="https://intranet.alxswe.com/rltoken/2o4gAozNufil_KjoxKI5bA" title="archive.zip" target="_blank">archive.zip</a></p>
+
+<p>In this archive, you will find a simple API with one model: <code>User</code>. Storage of these users is done via a serialization/deserialization in files.</p>
+
+<h4>Setup and start server</h4>
+
+<pre><code>bob@dylan:~$ pip3 install -r requirements.txt
+...
+bob@dylan:~$
+bob@dylan:~$ API_HOST=0.0.0.0 API_PORT=5000 python3 -m api.v1.app
+ * Serving Flask app "app" (lazy loading)
+...
+bob@dylan:~$
+</code></pre>
+
+<h4>Use the API <em>(in another tab or in your browser)</em></h4>
+
+<pre><code>bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/status" -vvv
+*   Trying 0.0.0.0...
+* TCP_NODELAY set
+* Connected to 0.0.0.0 (127.0.0.1) port 5000 (#0)
+&gt; GET /api/v1/status HTTP/1.1
+&gt; Host: 0.0.0.0:5000
+&gt; User-Agent: curl/7.54.0
+&gt; Accept: */*
+&gt; 
+* HTTP 1.0, assume close after body
+&lt; HTTP/1.0 200 OK
+&lt; Content-Type: application/json
+&lt; Content-Length: 16
+&lt; Access-Control-Allow-Origin: *
+&lt; Server: Werkzeug/1.0.1 Python/3.7.5
+&lt; Date: Mon, 18 May 2020 20:29:21 GMT
+&lt; 
+{"status":"OK"}
+* Closing connection 0
+bob@dylan:~$
+</code></pre>
 
 </details>
 
