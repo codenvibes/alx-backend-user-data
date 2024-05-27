@@ -662,6 +662,40 @@ bob@dylan:~$
 File: [api/v1/auth/basic_auth.py]()
 </summary>
 
+<p>Add the method <code>def extract_user_credentials(self, decoded_base64_authorization_header: str) -&gt; (str, str)</code> in the class <code>BasicAuth</code> that returns the user email and password from the Base64 decoded value.</p>
+
+<ul>
+<li>This method must return 2 values</li>
+<li>Return <code>None, None</code> if <code>decoded_base64_authorization_header</code> is <code>None</code></li>
+<li>Return <code>None, None</code> if <code>decoded_base64_authorization_header</code> is not a string</li>
+<li>Return <code>None, None</code> if <code>decoded_base64_authorization_header</code> doesn’t contain <code>:</code></li>
+<li>Otherwise, return the user email and the user password - these 2 values must be separated by a <code>:</code></li>
+<li>You can assume <code>decoded_base64_authorization_header</code> will contain only one <code>:</code></li>
+</ul>
+
+<pre><code>bob@dylan:~$ cat main_4.py
+#!/usr/bin/env python3
+""" Main 4
+"""
+from api.v1.auth.basic_auth import BasicAuth
+
+a = BasicAuth()
+
+print(a.extract_user_credentials(None))
+print(a.extract_user_credentials(89))
+print(a.extract_user_credentials("Holberton School"))
+print(a.extract_user_credentials("Holberton:School"))
+print(a.extract_user_credentials("bob@gmail.com:toto1234"))
+
+bob@dylan:~$
+bob@dylan:~$ API_HOST=0.0.0.0 API_PORT=5000 ./main_4.py
+(None, None)
+(None, None)
+(None, None)
+('Holberton', 'School')
+('bob@gmail.com', 'toto1234')
+bob@dylan:~$
+</code></pre>
 
 </details>
 
