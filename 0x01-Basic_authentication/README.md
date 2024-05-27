@@ -328,7 +328,7 @@ bob@dylan:~$
 <details>
 <summary>
 
-### 3. 
+### 3. Auth class
 `mandatory`
 
 File: [api/v1/auth](), [api/v1/auth/__init__.py](), [api/v1/auth/auth.py]()
