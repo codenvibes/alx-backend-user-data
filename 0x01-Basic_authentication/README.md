@@ -499,7 +499,7 @@ File: [api/v1/auth/basic_auth.py]()
 <details>
 <summary>
 
-### 11. 
+### 11. Basic - Overload current_user - and BOOM!
 `mandatory`
 
 File: []()
