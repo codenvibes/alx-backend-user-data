@@ -52,7 +52,7 @@
 
 
 <details>
-<summary><b><a href=" ">Base64 - concept</a></b></summary><br>
+<summary><b><a href="https://en.wikipedia.org/wiki/Base64">Base64 - concept</a></b></summary><br>
 
 
 <br><p align="center">※※※※※※※※※※※※</p><br>
