@@ -263,6 +263,65 @@ bob@dylan:~$
 File: []()
 </summary>
 
+<p>What the HTTP status code for a request where the user is authenticate but not allowed to access to a resource? <code>403</code> of course!</p>
+
+<p>Edit <code>api/v1/app.py</code>:</p>
+
+<ul>
+<li>Add a new error handler for this status code, the response must be:
+
+<ul>
+<li>a JSON: <code>{"error": "Forbidden"}</code></li>
+<li>status code <code>403</code></li>
+<li>you must use <code>jsonify</code> from Flask</li>
+</ul></li>
+</ul>
+
+<p>For testing this new error handler, add a new endpoint in <code>api/v1/views/index.py</code>:</p>
+
+<ul>
+<li>Route: <code>GET /api/v1/forbidden</code></li>
+<li>This endpoint must raise a 403 error by using <code>abort</code> - <a href="https://intranet.alxswe.com/rltoken/RH0gY_XQuSB75Q-JbI-fdg" title="Custom Error Pages" target="_blank">Custom Error Pages</a></li>
+</ul>
+
+<p>By calling <code>abort(403)</code>, the error handler for 403 will be executed.</p>
+
+<p>In the first terminal:</p>
+
+<pre><code>bob@dylan:~$ API_HOST=0.0.0.0 API_PORT=5000 python3 -m api.v1.app
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+</code></pre>
+
+<p>In a second terminal:</p>
+
+<pre><code>bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/forbidden"
+{
+  "error": "Forbidden"
+}
+bob@dylan:~$
+bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/forbidden" -vvv
+*   Trying 0.0.0.0...
+* TCP_NODELAY set
+* Connected to 0.0.0.0 (127.0.0.1) port 5000 (#0)
+&gt; GET /api/v1/forbidden HTTP/1.1
+&gt; Host: 0.0.0.0:5000
+&gt; User-Agent: curl/7.54.0
+&gt; Accept: */*
+&gt; 
+* HTTP 1.0, assume close after body
+&lt; HTTP/1.0 403 FORBIDDEN
+&lt; Content-Type: application/json
+&lt; Content-Length: 27
+&lt; Server: Werkzeug/0.12.1 Python/3.4.3
+&lt; Date: Sun, 24 Sep 2017 22:54:22 GMT
+&lt; 
+{
+  "error": "Forbidden"
+}
+* Closing connection 0
+bob@dylan:~$
+</code></pre>
 
 </details>
 
