@@ -257,7 +257,7 @@ bob@dylan:~$
 <details>
 <summary>
 
-### 2. 
+### 2. Error handler: Forbidden
 `mandatory`
 
 File: []()
