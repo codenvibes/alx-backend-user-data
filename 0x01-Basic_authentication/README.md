@@ -439,7 +439,7 @@ File: [api/v1/app.py](), [api/v1/auth/auth.py]()
 <details>
 <summary>
 
-### 6. 
+### 6. Basic auth
 `mandatory`
 
 File: []()
