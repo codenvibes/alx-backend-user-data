@@ -502,7 +502,7 @@ File: [api/v1/auth/basic_auth.py]()
 ### 11. Basic - Overload current_user - and BOOM!
 `mandatory`
 
-File: []()
+File: [api/v1/auth/basic_auth.py]()
 </summary>
 
 
