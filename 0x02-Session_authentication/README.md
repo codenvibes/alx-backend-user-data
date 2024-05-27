@@ -897,3 +897,241 @@ bob@dylan:~$
 
 </details>
 
+
+### 9. Expiration?
+`#advanced`
+
+File: [api/v1/auth/session_exp_auth.py](), [api/v1/app.py]()
+</summary>
+
+<p>Actually you have 2 authentication systems:</p>
+
+<ul>
+<li>Basic authentication</li>
+<li>Session authentication</li>
+</ul>
+
+<p>Now you will add an expiration date to a Session ID.</p>
+
+<p>Create a class <code>SessionExpAuth</code> that inherits from <code>SessionAuth</code> in the file <code>api/v1/auth/session_exp_auth.py</code>:</p>
+
+<ul>
+<li>Overload <code>def __init__(self):</code> method:
+
+<ul>
+<li>Assign an instance attribute <code>session_duration</code>:
+
+<ul>
+<li>To the environment variable <code>SESSION_DURATION</code> casts to an integer</li>
+<li>If this environment variable doesn’t exist or can’t be parse to an integer, assign to 0</li>
+</ul></li>
+</ul></li>
+<li>Overload <code>def create_session(self, user_id=None):</code>
+<ul>
+<li>Create a Session ID by calling <code>super()</code> - <code>super()</code> will call the <code>create_session()</code> method of <code>SessionAuth</code></li>
+<li>Return <code>None</code> if <code>super()</code> can’t create a Session ID</li>
+<li>Use this Session ID as key of the dictionary <code>user_id_by_session_id</code> - the value for this key must be a dictionary (called “session dictionary”):
+
+<ul>
+<li>The key <code>user_id</code> must be set to the variable <code>user_id</code></li>
+<li>The key <code>created_at</code> must be set to the current datetime - you must use <code>datetime.now()</code></li>
+</ul></li>
+<li>Return the Session ID created</li>
+</ul></li>
+<li>Overload <code>def user_id_for_session_id(self, session_id=None):</code>
+<ul>
+<li>Return <code>None</code> if <code>session_id</code> is <code>None</code></li>
+<li>Return <code>None</code> if <code>user_id_by_session_id</code> doesn’t contain any key equals to <code>session_id</code></li>
+<li>Return the <code>user_id</code> key from the session dictionary if <code>self.session_duration</code> is equal or under 0</li>
+<li>Return <code>None</code> if session dictionary doesn’t contain a key <code>created_at</code></li>
+<li>Return <code>None</code> if the <code>created_at</code> + <code>session_duration</code> seconds are before the current datetime.  <a href="https://intranet.alxswe.com/rltoken/mwc3EnlWLNJ2rvzvgZT8eA" target="_blank" title="datetime - timedelta">datetime - timedelta</a></li>
+<li>Otherwise, return <code>user_id</code> from the session dictionary</li>
+</ul></li>
+</ul>
+
+<p>Update <code>api/v1/app.py</code> to instantiate auth with <code>SessionExpAuth</code> if the environment variable <code>AUTH_TYPE</code> is equal to <code>session_exp_auth</code>.</p>
+
+<p>In the first terminal:</p>
+
+<pre><code>bob@dylan:~$ API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=session_exp_auth SESSION_NAME=_my_session_id SESSION_DURATION=60 python3 -m api.v1.app
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+</code></pre>
+
+<p>In a second terminal:</p>
+
+<pre><code>bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/auth_session/login" -XPOST -d "email=bobsession@hbtn.io" -d "password=fake pwd" -vvv
+Note: Unnecessary use of -X or --request, POST is already inferred.
+*   Trying 0.0.0.0...
+* TCP_NODELAY set
+* Connected to 0.0.0.0 (127.0.0.1) port 5000 (#0)
+&gt; POST /api/v1/auth_session/login HTTP/1.1
+&gt; Host: 0.0.0.0:5000
+&gt; User-Agent: curl/7.54.0
+&gt; Accept: */*
+&gt; Content-Length: 42
+&gt; Content-Type: application/x-www-form-urlencoded
+&gt; 
+* upload completely sent off: 42 out of 42 bytes
+* HTTP 1.0, assume close after body
+&lt; HTTP/1.0 200 OK
+&lt; Content-Type: application/json
+&lt; Set-Cookie: _my_session_id=eea5d963-8dd2-46f0-9e43-fd05029ae63f; Path=/
+&lt; Access-Control-Allow-Origin: *
+&lt; Content-Length: 210
+&lt; Server: Werkzeug/0.12.1 Python/3.4.3
+&lt; Date: Mon, 16 Oct 2017 04:57:08 GMT
+&lt; 
+{
+  "created_at": "2017-10-16 04:23:04", 
+  "email": "bobsession@hbtn.io", 
+  "first_name": null, 
+  "id": "cf3ddee1-ff24-49e4-a40b-2540333fe992", 
+  "last_name": null, 
+  "updated_at": "2017-10-16 04:23:04"
+}
+* Closing connection 0
+bob@dylan:~$
+bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/users/me" --cookie "_my_session_id=eea5d963-8dd2-46f0-9e43-fd05029ae63f"
+{
+  "created_at": "2017-10-16 04:23:04", 
+  "email": "bobsession@hbtn.io", 
+  "first_name": null, 
+  "id": "cf3ddee1-ff24-49e4-a40b-2540333fe992", 
+  "last_name": null, 
+  "updated_at": "2017-10-16 04:23:04"
+}
+bob@dylan:~$
+bob@dylan:~$ sleep 10
+bob@dylan:~$
+bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/users/me" --cookie "_my_session_id=eea5d963-8dd2-46f0-9e43-fd05029ae63f"
+{
+  "created_at": "2017-10-16 04:23:04", 
+  "email": "bobsession@hbtn.io", 
+  "first_name": null, 
+  "id": "cf3ddee1-ff24-49e4-a40b-2540333fe992", 
+  "last_name": null, 
+  "updated_at": "2017-10-16 04:23:04"
+}
+bob@dylan:~$ 
+bob@dylan:~$ sleep 51 # 10 + 51 &gt; 60
+bob@dylan:~$ 
+bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/users/me" --cookie "_my_session_id=eea5d963-8dd2-46f0-9e43-fd05029ae63f"
+{
+  "error": "Forbidden"
+}
+bob@dylan:~$
+</code></pre>
+
+
+</details>
+
+<details>
+<summary>
+
+### 10. Sessions in database
+`#advanced`
+
+File: [api/v1/auth/session_db_auth.py](), [api/v1/app.py](), [models/user_session.py]()
+</summary>
+
+<p>Since the beginning, all Session IDs are stored in memory. It means, if your application stops, all Session IDs are lost.</p>
+
+<p>For avoid that, you will create a new authentication system, based on Session ID stored in database (for us, it will be in a file, like <code>User</code>).</p>
+
+<p>Create a new model <code>UserSession</code> in <code>models/user_session.py</code> that inherits from <code>Base</code>:</p>
+
+<ul>
+<li>Implement the <code>def __init__(self, *args: list, **kwargs: dict):</code> like in <code>User</code> but for these 2 attributes:
+
+<ul>
+<li><code>user_id</code>: string</li>
+<li><code>session_id</code>: string</li>
+</ul></li>
+</ul>
+
+<p>Create a new authentication class <code>SessionDBAuth</code> in <code>api/v1/auth/session_db_auth.py</code> that inherits from <code>SessionExpAuth</code>:</p>
+
+<ul>
+<li>Overload <code>def create_session(self, user_id=None):</code> that creates and stores new instance of <code>UserSession</code> and returns the Session ID</li>
+<li>Overload <code>def user_id_for_session_id(self, session_id=None):</code> that returns the User ID by requesting <code>UserSession</code> in the database based on <code>session_id</code></li>
+<li>Overload <code>def destroy_session(self, request=None):</code> that destroys the <code>UserSession</code> based on the Session ID from the request cookie</li>
+</ul>
+
+<p>Update <code>api/v1/app.py</code> to instantiate <code>auth</code> with <code>SessionDBAuth</code> if the environment variable <code>AUTH_TYPE</code> is equal to <code>session_db_auth</code>.</p>
+
+<p>In the first terminal:</p>
+
+<pre><code>bob@dylan:~$ API_HOST=0.0.0.0 API_PORT=5000 AUTH_TYPE=session_db_auth SESSION_NAME=_my_session_id SESSION_DURATION=60 python3 -m api.v1.app
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+</code></pre>
+
+<p>In a second terminal:</p>
+
+<pre><code>bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/auth_session/login" -XPOST -d "email=bobsession@hbtn.io" -d "password=fake pwd" -vvv
+Note: Unnecessary use of -X or --request, POST is already inferred.
+*   Trying 0.0.0.0...
+* TCP_NODELAY set
+* Connected to 0.0.0.0 (127.0.0.1) port 5000 (#0)
+&gt; POST /api/v1/auth_session/login HTTP/1.1
+&gt; Host: 0.0.0.0:5000
+&gt; User-Agent: curl/7.54.0
+&gt; Accept: */*
+&gt; Content-Length: 42
+&gt; Content-Type: application/x-www-form-urlencoded
+&gt; 
+* upload completely sent off: 42 out of 42 bytes
+* HTTP 1.0, assume close after body
+&lt; HTTP/1.0 200 OK
+&lt; Content-Type: application/json
+&lt; Set-Cookie: _my_session_id=bacadfad-3c3b-4830-b1b2-3d77dfb9ad13; Path=/
+&lt; Access-Control-Allow-Origin: *
+&lt; Content-Length: 210
+&lt; Server: Werkzeug/0.12.1 Python/3.4.3
+&lt; Date: Mon, 16 Oct 2017 04:57:08 GMT
+&lt; 
+{
+  "created_at": "2017-10-16 04:23:04", 
+  "email": "bobsession@hbtn.io", 
+  "first_name": null, 
+  "id": "cf3ddee1-ff24-49e4-a40b-2540333fe992", 
+  "last_name": null, 
+  "updated_at": "2017-10-16 04:23:04"
+}
+* Closing connection 0
+bob@dylan:~$
+bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/users/me" --cookie "_my_session_id=bacadfad-3c3b-4830-b1b2-3d77dfb9ad13"
+{
+  "created_at": "2017-10-16 04:23:04", 
+  "email": "bobsession@hbtn.io", 
+  "first_name": null, 
+  "id": "cf3ddee1-ff24-49e4-a40b-2540333fe992", 
+  "last_name": null, 
+  "updated_at": "2017-10-16 04:23:04"
+}
+bob@dylan:~$
+bob@dylan:~$ sleep 10
+bob@dylan:~$
+bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/users/me" --cookie "_my_session_id=bacadfad-3c3b-4830-b1b2-3d77dfb9ad13"
+{
+  "created_at": "2017-10-16 04:23:04", 
+  "email": "bobsession@hbtn.io", 
+  "first_name": null, 
+  "id": "cf3ddee1-ff24-49e4-a40b-2540333fe992", 
+  "last_name": null, 
+  "updated_at": "2017-10-16 04:23:04"
+}
+bob@dylan:~$
+bob@dylan:~$ sleep 60
+bob@dylan:~$
+bob@dylan:~$ curl "http://0.0.0.0:5000/api/v1/users/me" --cookie "_my_session_id=bacadfad-3c3b-4830-b1b2-3d77dfb9ad13"
+{
+  "error": "Forbidden"
+}
+bob@dylan:~$
+</code></pre>
+
+
+</details>
+
