@@ -22,7 +22,7 @@
 
 
 <details>
-<summary><b><a href="https://intranet.alxswe.com/rltoken/W2JiHD6cbJY1scJORyLqnw">logging documentation</a></b></summary><br>
+<summary><b><a href="https://docs.python.org/3/library/logging.html">logging documentation</a></b></summary><br>
 
 
 <br><p align="center">※※※※※※※※※※※※</p><br>
