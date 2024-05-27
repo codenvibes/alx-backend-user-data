@@ -20,7 +20,7 @@
 
 ## Resources
 <details>
-<summary><b><a href=" ">REST API Authentication Mechanisms</a></b></summary><br>
+<summary><b><a href="https://www.youtube.com/watch?v=501dpx2IjGY">REST API Authentication Mechanisms</a></b></summary><br>
 
 
 <br><p align="center">※※※※※※※※※※※※</p><br>
