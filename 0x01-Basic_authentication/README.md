@@ -478,7 +478,7 @@ File: [api/v1/auth/basic_auth.py]()
 ### 9. Basic - User credentials
 `mandatory`
 
-File: []()
+File: [api/v1/auth/basic_auth.py]()
 </summary>
 
 
