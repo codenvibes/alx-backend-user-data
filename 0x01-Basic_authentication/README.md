@@ -442,7 +442,7 @@ File: [api/v1/app.py](), [api/v1/auth/auth.py]()
 ### 6. Basic auth
 `mandatory`
 
-File: []()
+File: [api/v1/app.py](), [api/v1/auth/basic_auth.py]()
 </summary>
 
 
