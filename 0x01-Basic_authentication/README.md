@@ -523,10 +523,10 @@ File: [api/v1/auth/basic_auth.py]()
 <details>
 <summary>
 
-### 13. 
+### 13. Require auth with stars
 `#advanced`
 
-File: []()
+File: [api/v1/auth/auth.py]()
 </summary>
 
 
