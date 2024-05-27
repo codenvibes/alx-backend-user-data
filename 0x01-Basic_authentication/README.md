@@ -961,6 +961,15 @@ bob@dylan:~$
 File: [api/v1/auth/auth.py]()
 </summary>
 
+<p>Improve <code>def require_auth(self, path, excluded_paths)</code> by allowing <code>*</code> at the end of excluded paths.</p>
+
+<p>Example for <code>excluded_paths = ["/api/v1/stat*"]</code>:</p>
+
+<ul>
+<li><code>/api/v1/users</code> will return <code>True</code></li>
+<li><code>/api/v1/status</code> will return <code>False</code></li>
+<li><code>/api/v1/stats</code> will return <code>False</code></li>
+</ul>
 
 </details>
 
