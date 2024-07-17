@@ -142,7 +142,7 @@
 Directory: [0x01-Basic_authentication]()
 </summary>
 
-<p>Download and start your project from this <a href="https://intranet.alxswe.com/rltoken/2o4gAozNufil_KjoxKI5bA" title="archive.zip" target="_blank">archive.zip</a></p>
+<p>Download and start your project from this <a href="https://github.com/codenvibes/alx-backend-user-data/blob/master/0x01-Basic_authentication/ec2f874b061bd3a2915949f081f4f5f055104f20.zip" title="archive.zip" target="_blank">archive.zip</a></p>
 
 <p>In this archive, you will find a simple API with one model: <code>User</code>. Storage of these users is done via a serialization/deserialization in files.</p>
 
